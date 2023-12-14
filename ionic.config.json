@@ -1,0 +1,7 @@
+{
+  "name": "GesGym",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
