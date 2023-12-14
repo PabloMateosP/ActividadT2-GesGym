@@ -1,20 +1,63 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Tabla Ejercicios Gym
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-label>Título: </ion-label>
+      <ion-input [(ngModel)]="ejercicioEditando.titulo"></ion-input>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      <ion-label>Descripción: </ion-label>
+      <ion-input [(ngModel)]="ejercicioEditando.descripcion"></ion-input>
+
+      <ion-label>Musculos: </ion-label>
+      <ion-input [(ngModel)]="ejercicioEditando.musculosUsados"></ion-input>
+
+      <ion-label>Repeticiones: </ion-label>
+      <ion-input [(ngModel)]="ejercicioEditando.repeticiones"></ion-input>
+
+      <ion-label>Series: </ion-label>
+      <ion-input [(ngModel)]="ejercicioEditando.series"></ion-input>
+
+      <ion-button (click)="clickBotonInsertar()" fill="outline"><ion-icon
+          name="document-outline"></ion-icon></ion-button>
+      <ion-button color="danger" (click)="clickBotonBorrar()" fill="outline">
+        <ion-icon name="trash-bin-outline"></ion-icon>
+      </ion-button>
+      <ion-button color="success" (click)="clickBotonModificar()" fill="outline"><ion-icon
+          name="create-outline"></ion-icon></ion-button>
+    </ion-row>
+  </ion-grid>
+
+  <h1>
+    LISTA DE EJERCICIOS
+  </h1>
+
+  <ion-list>
+    <ion-item *ngFor="let documentEjercicio of arrayColeccionEjercicios"
+      (click)="selectEjercicio(documentEjercicio.id, documentEjercicio.tarea)">
+      <ion-grid>
+        <ion-row>
+          <h2>{{documentEjercicio.ejercicio.titulo}}</h2>
+        </ion-row>
+        <ion-row>
+          <p>{{documentEjercicio.ejercicio.descripcion}}</p>
+        </ion-row>
+        <ion-row>
+          <h2>{{documentEjercicio.ejercicio.musculosUsados}}</h2>
+        </ion-row>
+        <ion-row>
+          <p>{{documentEjercicio.ejercicio.repeticion}}</p>
+        </ion-row>
+        <ion-row>
+          <p>{{documentEjercicio.ejercicio.series}}</p>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
