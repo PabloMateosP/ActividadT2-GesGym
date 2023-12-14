@@ -17,12 +17,12 @@
 
       <ion-label>Musculos: </ion-label>
       <ion-input [(ngModel)]="ejercicioEditando.musculosUsados"></ion-input>
+      
+      <ion-label>Series: </ion-label>
+      <ion-input [(ngModel)]="ejercicioEditando.series"></ion-input>
 
       <ion-label>Repeticiones: </ion-label>
       <ion-input [(ngModel)]="ejercicioEditando.repeticiones"></ion-input>
-
-      <ion-label>Series: </ion-label>
-      <ion-input [(ngModel)]="ejercicioEditando.series"></ion-input>
 
       <ion-button (click)="clickBotonInsertar()" fill="outline"><ion-icon
           name="document-outline"></ion-icon></ion-button>
@@ -40,22 +40,22 @@
 
   <ion-list>
     <ion-item *ngFor="let documentEjercicio of arrayColeccionEjercicios"
-      (click)="selectEjercicio(documentEjercicio.id, documentEjercicio.tarea)">
+      (click)="selectEjercicio(documentEjercicio.id, documentEjercicio.ejercicio)">
       <ion-grid>
         <ion-row>
-          <h2>{{documentEjercicio.ejercicio.titulo}}</h2>
+          <h1>{{documentEjercicio.ejercicio.titulo}}</h1>
         </ion-row>
         <ion-row>
           <p>{{documentEjercicio.ejercicio.descripcion}}</p>
         </ion-row>
         <ion-row>
-          <h2>{{documentEjercicio.ejercicio.musculosUsados}}</h2>
+          <p>Músculos: {{documentEjercicio.ejercicio.musculosUsados}}</p>
         </ion-row>
         <ion-row>
-          <p>{{documentEjercicio.ejercicio.repeticion}}</p>
+          <p>Series: {{documentEjercicio.ejercicio.series}}</p>
         </ion-row>
         <ion-row>
-          <p>{{documentEjercicio.ejercicio.series}}</p>
+          <p>Repeteciones: {{documentEjercicio.ejercicio.repeticiones}}</p>
         </ion-row>
       </ion-grid>
     </ion-item>

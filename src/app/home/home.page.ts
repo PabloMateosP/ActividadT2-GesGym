@@ -9,7 +9,6 @@ import { FirestoreService } from '../firestore.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   
   ejercicioEditando = {} as Ejercicio;
 
@@ -47,7 +46,7 @@ export class HomePage {
         
         this.arrayColeccionEjercicios.push({
           id: datosEjercicio.payload.doc.id,
-          tarea: datosEjercicio.payload.doc.data()
+          ejercicio: datosEjercicio.payload.doc.data()
         })
 
       });
