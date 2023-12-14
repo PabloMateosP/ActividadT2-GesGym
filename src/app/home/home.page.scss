@@ -1,6 +1,5 @@
+// Mediante el scss hay que editar aplicación
 #container {
-  text-align: center;
-
   position: absolute;
   left: 0;
   right: 0;
@@ -24,4 +23,43 @@
 
 #container a {
   text-decoration: none;
+}
+
+#idTituloPag {
+  display: flex;
+  justify-content: center;
+}
+
+#idRowDatos {
+  display: flex;
+  padding-left: 10px;
+
+  // Separamos botones de input
+  margin-bottom: 10px;
+}
+
+#idLabel {
+  margin: 5px;
+  padding: 5px;
+  border-bottom: 2px solid cadetblue;
+  border-left: 2px solid cadetblue;
+}
+
+#idRowBotones {
+  display: flex;
+  justify-content: center;
+  
+}
+
+#h1TituloEjercicios {
+  color: cadetblue;
+  display: flex;
+  justify-content: center;
+}
+
+#idListaEjercicios {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid cadetblue;
+  border-bottom: 1px solid cadetblue;
 }
