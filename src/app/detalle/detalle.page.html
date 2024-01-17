@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Detalles Ejercicios</ion-title>
+    <ion-title id="tituloHeader">DETALLES EJERCICIOS</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,21 +11,25 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-grid>
-    <ion-row>
-      <h2>Título: {{document.ejercicio.titulo}}</h2>
-    </ion-row>
-    <!-- <ion-row>
-      <p>{{documentEjercicio.ejercicio.descripcion}}</p>
-    </ion-row>
-    <ion-row>
-      <p><strong>Músculos:</strong> {{documentEjercicio.ejercicio.musculosUsados}}</p>
-    </ion-row>
-    <ion-row>
-      <p><strong>Series: </strong>{{documentEjercicio.ejercicio.series}}</p>
-    </ion-row>
-    <ion-row>
-      <p><strong>Repeteciones: </strong>{{documentEjercicio.ejercicio.repeticiones}}</p>
-    </ion-row> -->
-  </ion-grid>
+  <ion-list id="idListaEjercicios">
+    <ion-item >
+      <ion-grid>
+        <ion-row>
+          <h2><strong>Título:</strong> {{document.ejercicio.titulo}}</h2>
+        </ion-row>
+        <ion-row>
+          <p>{{document.ejercicio.descripcion}}</p>
+        </ion-row>
+        <ion-row>
+          <p><strong>Músculos:</strong> {{document.ejercicio.musculosUsados}}</p>
+        </ion-row>
+        <ion-row>
+          <p><strong>Series: </strong>{{document.ejercicio.series}}</p>
+        </ion-row>
+        <ion-row>
+          <p><strong>Repeteciones: </strong>{{document.ejercicio.repeticiones}}</p>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>

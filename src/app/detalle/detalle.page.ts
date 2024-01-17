@@ -36,8 +36,7 @@ export class DetallePage implements OnInit {
         if (resultado.payload.data() != null) {
           this.document.id = resultado.payload.id;
           this.document.ejercicio = resultado.payload.data();
-
-          console.log(this.document.data.titulo);
+          
         } else {
           this.document.ejercicio = {} as Ejercicio;
         }
