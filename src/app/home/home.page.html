@@ -1,14 +1,19 @@
 <body>
   <ion-header [translucent]="true">
     <ion-toolbar>
-      <ion-title id="idTituloPag">
-        Tabla Ejercicios Gym
+      <ion-title id="idTituloPag" size="large">
+        GESGYM
       </ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content [fullscreen]="true">
-    <ion-grid>
+  <ion-content [fullscreen]="true" class="ion-padding">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">GESGYM</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <!--  <ion-grid>
       <ion-row id="idRowDatos">
         <ion-label id="idLabel">Título: </ion-label>
         <ion-input [(ngModel)]="ejercicioEditando.titulo"></ion-input>
@@ -36,33 +41,26 @@
           <ion-icon name="create-outline"></ion-icon>
         </ion-button>
       </ion-row>
-    </ion-grid>
+    </ion-grid> -->
 
     <h1 id="h1TituloEjercicios">
-      LISTA DE EJERCICIOS 
+      LISTA DE EJERCICIOS
     </h1>
 
     <ion-list id="idListaEjercicios">
       <ion-item *ngFor="let documentEjercicio of arrayColeccionEjercicios"
         (click)="selectEjercicio(documentEjercicio.id, documentEjercicio.ejercicio)">
-        <ion-grid>
+        <ion-grid class="vertical-layout">
           <ion-row>
             <h2>{{documentEjercicio.ejercicio.titulo}}</h2>
-          </ion-row>
-          <ion-row>
-            <p>{{documentEjercicio.ejercicio.descripcion}}</p>
-          </ion-row>
-          <ion-row>
-            <p><strong>Músculos:</strong> {{documentEjercicio.ejercicio.musculosUsados}}</p>
-          </ion-row>
-          <ion-row>
-            <p><strong>Series: </strong>{{documentEjercicio.ejercicio.series}}</p>
-          </ion-row>
-          <ion-row>
-            <p><strong>Repeteciones: </strong>{{documentEjercicio.ejercicio.repeticiones}}</p>
           </ion-row>
         </ion-grid>
       </ion-item>
     </ion-list>
+    <ion-fab slot="fixed" vertical="bottom" horizontal="end" style="margin-bottom: 75px;">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   </ion-content>
 </body>

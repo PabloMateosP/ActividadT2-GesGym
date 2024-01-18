@@ -26,6 +26,7 @@
 }
 
 #idTituloPag {
+  font-weight: 900;
   display: flex;
   justify-content: center;
 }
@@ -60,6 +61,7 @@
 #idListaEjercicios {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   border-top: 1px solid cadetblue;
   border-bottom: 1px solid cadetblue;
 }

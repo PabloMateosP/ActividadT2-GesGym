@@ -10,3 +10,18 @@
     display: flex;
     justify-content: center;
 }
+
+#idRowDatos {
+    display: flex;
+    padding-left: 10px;
+
+    // Separamos botones de input
+    margin-bottom: 20px;
+}
+
+#idLabel {
+    margin: 5px;
+    padding: 5px;
+    border-bottom: 2px solid cadetblue;
+    border-left: 2px solid cadetblue;
+}
