@@ -17,7 +17,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
 
   <ion-list id="idListaEjercicios">
     <ion-item>
@@ -59,12 +58,12 @@
           <ion-label id="idLabel">Repeticiones: </ion-label>
           <ion-input [(ngModel)]="document.ejercicio.repeticiones"></ion-input>
         </ion-row>
-        <ion-row id="idRowBotones">
-          <ion-button color="success" fill="outline">
-            <ion-icon name="create-outline"></ion-icon>
-          </ion-button>
-        </ion-row>
       </ion-grid>
     </ion-grid>
   </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="start" >
+    <ion-fab-button (click)="clickSalirHome()" color="dark">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

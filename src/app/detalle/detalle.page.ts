@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ejercicio } from '../ejercicios';
 import { FirestoreService } from '../firestore.service';
 
@@ -18,7 +18,8 @@ export class DetallePage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private router : Router
   ) {
     
   }
@@ -41,5 +42,9 @@ export class DetallePage implements OnInit {
           this.document.ejercicio = {} as Ejercicio;
         }
       });
+  }
+
+  clickSalirHome(){
+    this.router.navigate(['home']);
   }
 }

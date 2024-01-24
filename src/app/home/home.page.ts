@@ -63,4 +63,8 @@ export class HomePage {
     this.router.navigate(['detalle', this.idEjercicioSelect]);
     
   }
+
+  clickEntrarAdd(){
+    this.router.navigate(['add']);
+  }
 }
