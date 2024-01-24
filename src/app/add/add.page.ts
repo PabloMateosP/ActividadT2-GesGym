@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ejercicio } from '../ejercicios';
 import { FirestoreService } from '../firestore.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add',
@@ -11,12 +12,25 @@ import { Router } from '@angular/router';
 export class AddPage implements OnInit {
   ejercicioEditando = {} as Ejercicio;
 
-  constructor(private firestoreService: FirestoreService , private router: Router) { }
+  constructor(private firestoreService: FirestoreService , private router: Router, private alertController: AlertController) { }
 
+  
+
+  async alertInsertarTarea() {
+    const alert = await this.alertController.create({
+      header: 'Éxito',
+      message: 'Tarea añadida',
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
+  
   clickBotonInsertar() {
-    this.firestoreService.insertar('ejercicio', this.ejercicioEditando);
-    
-    this.router.navigate(['home']);
+    this.firestoreService.insertar('ejercicio', this.ejercicioEditando).then(() => {
+      this.alertInsertarTarea();
+      this.router.navigate(['home']);
+    });
   }
 
   clickBotonReset() {

@@ -11,6 +11,9 @@ import { FirestoreService } from '../firestore.service';
 export class DetallePage implements OnInit {
   id: string = '';
 
+  // Variable para la aparición del formulario editar
+  edit = false;
+
   document: any = {
     id: '',
     ejercicio: {} as Ejercicio,
@@ -44,6 +47,25 @@ export class DetallePage implements OnInit {
       });
   }
 
+  clickBotonModificar() {
+    this.firestoreService.modificar(
+      'ejercicio',
+      this.id,
+      this.document.ejercicio    
+      );
+  }
+  
+  clickBotonBorrar() {
+    this.firestoreService.borrar('ejercicio', this.id);
+    this.router.navigate(['home']);
+  }
+
+  // Mediante esta función hacemos que cuando se utilice 
+  // aparezca el formulario 
+  clickBotonEdit(){
+    this.edit = !this.edit;
+  }
+  
   clickSalirHome(){
     this.router.navigate(['home']);
   }

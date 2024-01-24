@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="secondary">
-      <ion-button fill="outline" color="danger">
+      <ion-button fill="outline" color="danger" (click)="clickBotonBorrar()">
         <ion-icon slot="start" name="trash"></ion-icon>
         DEL
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="primary">
-      <ion-button fill="outline" color="success">
+      <ion-button fill="outline" color="success" (click)="clickBotonEdit()">
         Edit
         <ion-icon slot="end" name="create"></ion-icon>
       </ion-button>
@@ -16,9 +16,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
 
-  <ion-list id="idListaEjercicios">
+  <ion-list id="idListaEjercicios" *ngIf="!edit">
     <ion-item>
       <ion-grid>
         <ion-row>
@@ -39,7 +39,7 @@
       </ion-grid>
     </ion-item>
   </ion-list>
-  <ion-list>
+  <ion-list *ngIf="edit">
     <ion-grid>
       <ion-grid>
         <ion-row id="idRowDatos">
@@ -58,10 +58,15 @@
           <ion-label id="idLabel">Repeticiones: </ion-label>
           <ion-input [(ngModel)]="document.ejercicio.repeticiones"></ion-input>
         </ion-row>
+        <ion-row>
+          <ion-button color="success" (click)="clickBotonModificar()" fill="outline">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-button>
+        </ion-row>
       </ion-grid>
     </ion-grid>
   </ion-list>
-  <ion-fab slot="fixed" vertical="bottom" horizontal="start" >
+  <ion-fab slot="fixed" vertical="bottom" horizontal="start">
     <ion-fab-button (click)="clickSalirHome()" color="dark">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-fab-button>
