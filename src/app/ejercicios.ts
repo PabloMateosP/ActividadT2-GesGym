@@ -5,4 +5,5 @@ export interface Ejercicio {
     musculosUsados: string;
     repeticiones: number;
     series: number;
+    imagenURL: string;
 }

@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="secondary">
-      <ion-button fill="outline" color="danger" (click)="clickBotonBorrar()">
+      <ion-button fill="outline" color="danger" (click)="alertBorrarTarea()">
         <ion-icon slot="start" name="trash"></ion-icon>
         DEL
       </ion-button>
@@ -35,6 +35,9 @@
         </ion-row>
         <ion-row>
           <p><strong>Repeteciones: </strong>{{document.ejercicio.repeticiones}}</p>
+        </ion-row>
+        <ion-row>
+          {{document.ejercicio.imagen}}
         </ion-row>
       </ion-grid>
     </ion-item>

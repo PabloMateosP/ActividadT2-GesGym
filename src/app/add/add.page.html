@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">add</ion-title>
+      <ion-title size="large">Añadir Tarea</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-list>
@@ -29,12 +29,19 @@
           <ion-label id="idLabel">Repeticiones: </ion-label>
           <ion-input [(ngModel)]="ejercicioEditando.repeticiones"></ion-input>
         </ion-row>
+        <ion-row>
+          <ion-button (click)="seleccionarImagen()" fill="outline" color="success">
+            Subir Imagen (
+            <ion-icon name="cloud-upload-outline"></ion-icon>)
+          </ion-button>
+        </ion-row>
+        <br>
         <ion-row id="idRowBotones">
           <ion-button (click)="clickBotonInsertar()" fill="outline">
-            <ion-icon name="document-outline"></ion-icon>
+            Aceptar
           </ion-button>
           <ion-button (click)="clickBotonReset()" fill="outline" color="danger">
-            <ion-icon name="trash"></ion-icon>
+            Reset
           </ion-button>
         </ion-row>
       </ion-grid>

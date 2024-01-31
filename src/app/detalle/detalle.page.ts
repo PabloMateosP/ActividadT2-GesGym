@@ -6,6 +6,7 @@ import { FirestoreService } from '../firestore.service';
 //Imports para borrar acciones con imagene
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle',
@@ -32,7 +33,8 @@ export class DetallePage implements OnInit {
     private router: Router,
     private loadingController: LoadingController,
     private toastController: ToastController,
-    private imagePicker: ImagePicker
+    private imagePicker: ImagePicker,
+    private alertController: AlertController
   ) {
 
   }
@@ -65,10 +67,68 @@ export class DetallePage implements OnInit {
     );
   }
 
+  // ------------------------------------------------------------
   clickBotonBorrar() {
     this.firestoreService.borrar('ejercicio', this.id);
     this.router.navigate(['home']);
   }
+
+  async alertBorrarTarea() {
+    const alert = await this.alertController.create({
+      header: 'Confirmación',
+      message: '¿Estás seguro de que quieres borrar la tarea?',
+      buttons: [
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.clickBotonBorrar();
+            this.alertExito();
+          }
+        },
+        {
+          text: 'Denegar',
+          role: 'cancel',
+          handler: () => {
+            this.alertError();
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+  
+  async alertExito() {
+    const alert = await this.alertController.create({
+      header: 'Éxito',
+      message: 'Tarea Borrada',
+      buttons: ["Aceptar"]
+    });
+  
+    await alert.present();
+  }
+  
+  async alertError() {
+    const alert = await this.alertController.create({
+      header: 'Error',
+      message: 'La tarea no ha sido eliminada',
+      buttons: ["Aceptar"]
+    });
+  
+    await alert.present();
+  }
+  // -----------------------------------------------------
+  
+
+  // async alertBorrarTarea() {
+  //   const alert = await this.alertController.create({
+  //     header: 'Éxito',
+  //     message: 'Tarea Borrada',
+  //     buttons: ["Aceptar", "Denegar"]
+  //   });
+
+  //   await alert.present();
+  // }
 
   // Mediante esta función hacemos que cuando se utilice 
   // aparezca el formulario 
@@ -111,7 +171,7 @@ export class DetallePage implements OnInit {
       });
   }
 
-  async subirImagen(){
+  async subirImagen() {
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
       message: 'Please wait ...'
@@ -131,6 +191,32 @@ export class DetallePage implements OnInit {
     // Asignar el nombre de la imagen en función de la hora actual para 
     // evitar duplicidades de nombres 
     let nombreImage = `${new Date().getTime()}`;
-    // Llamar al método 
+    // Llamar al método que sube  la imagen al Storage 
+    this.firestoreService.subirImagenBase64(nombreCarpeta, nombreImage, this.imagenSelect)
+      .then(snapshot => {
+        snapshot.ref.getDownloadURL()
+          .then(downloadURL => {
+            // EN LA VARIABLE downloadURL SE OBTIENE LA DIRECCIÓN URL DE LA IMAGEN
+            console.log("downloadURL: " + downloadURL);
+            // this.document.data.imagenURL = downloadURL;
+            // Mostrar el mensaje de finalización de la subida 
+            toast.present();
+            // Ocultar el mensaje de espera
+            loading.dismiss();
+          })
+      })
+  }
+
+  async eliminarArchivo(fileURL: string) {
+    const toast = await this.toastController.create({
+      message: 'File deleted successfully',
+      duration: 3000
+    });
+    this.firestoreService.eliminarArchivoPorUrl(fileURL)
+      .then(() => {
+        toast.present();
+      }, (err) => {
+        console.log(err)
+      });
   }
 }
