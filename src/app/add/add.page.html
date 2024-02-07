@@ -33,11 +33,11 @@
           <ion-button (click)="seleccionarImagen()" fill="outline" color="success">
             Subir Imagen (
             <ion-icon name="cloud-upload-outline"></ion-icon>)
-          </ion-button>
+          </ion-button>     
         </ion-row>
         <br>
         <ion-row id="idRowBotones">
-          <ion-button (click)="clickBotonInsertar()" fill="outline">
+          <ion-button (click)="clickBotonInsertar(); subirImagen()" fill="outline">
             Aceptar
           </ion-button>
           <ion-button (click)="clickBotonReset()" fill="outline" color="danger">

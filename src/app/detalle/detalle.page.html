@@ -37,7 +37,7 @@
           <p><strong>Repeteciones: </strong>{{document.ejercicio.repeticiones}}</p>
         </ion-row>
         <ion-row>
-          {{document.ejercicio.imagen}}
+          <ion-img [src]="document.ejercicio.imagenUrl"></ion-img>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -62,7 +62,12 @@
           <ion-input [(ngModel)]="document.ejercicio.repeticiones"></ion-input>
         </ion-row>
         <ion-row>
-          <ion-button color="success" (click)="clickBotonModificar()" fill="outline">
+          <ion-button color="success" (click)="seleccionarImagen()" fill="outline">
+            Subir Imagen (<ion-icon name="cloud-upload-outline"></ion-icon>)
+          </ion-button>
+        </ion-row>
+        <ion-row>
+          <ion-button color="success" (click)="clickBotonModificar(); subirImagen()" fill="outline">
             <ion-icon name="create-outline"></ion-icon>
           </ion-button>
         </ion-row>

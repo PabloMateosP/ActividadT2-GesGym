@@ -118,17 +118,6 @@ export class DetallePage implements OnInit {
     await alert.present();
   }
   // -----------------------------------------------------
-  
-
-  // async alertBorrarTarea() {
-  //   const alert = await this.alertController.create({
-  //     header: 'Éxito',
-  //     message: 'Tarea Borrada',
-  //     buttons: ["Aceptar", "Denegar"]
-  //   });
-
-  //   await alert.present();
-  // }
 
   // Mediante esta función hacemos que cuando se utilice 
   // aparezca el formulario 
@@ -140,22 +129,40 @@ export class DetallePage implements OnInit {
     this.router.navigate(['home']);
   }
 
-  //Función de selección de imagen 
+  async eliminarArchivo(fileURL: string) {
+    const toast = await this.toastController.create({
+      message: 'File deleted successfully',
+      duration: 3000
+    });
+    this.firestoreService.eliminarArchivoPorUrl(fileURL)
+      .then(() => {
+        toast.present();
+      }, (err) => {
+        console.log(err)
+      });
+  }
+
+  // -----------------------------------------------------------------------------------
+  // Apartado Seleccionar Imagen 
   async seleccionarImagen() {
     //Comprobamos si la aplicaciónn tiene parámetros de lectura
+    console.log("Entramos seleccionar imagen")
     this.imagePicker.hasReadPermission().then(
       (result) => {
         //Si no tiene permiso de lectura se solicita al usuario
         if (result == false) {
           this.imagePicker.requestReadPermission();
         } else {
+          console.log("Búscamos imagen en selector")
           //Abrir selector de imágenes (ImagePicker)
           this.imagePicker.getPictures({
             maximumImagesCount: 1, //Permitir sólo 1 imagne
             outputType: 1 // 1 = Base64
           }).then(
-            (results) => { // En la variable results se tienen las imágenes seleccionadas
-              if (results.lenght > 0) { // Si el usuario ha elegido alguna imagen
+            (results) => {
+              console.log(results) // En la variable results se tienen las imágenes seleccionadas
+              if (results.length > 0) { // Si el usuario ha elegido alguna imagen
+                console.log("Imagen seleccionado");
                 // En la variake imagenSelect quedará almacenadda la imagen seleccionada
                 this.imagenSelect = "data:image/jpeg;base64," + results[0];
                 console.log("Imagen que se ha seleccionado (En Base64): " + this.imagenSelect);
@@ -171,6 +178,8 @@ export class DetallePage implements OnInit {
       });
   }
 
+
+  // Apartado Subir Imagen
   async subirImagen() {
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
@@ -207,16 +216,5 @@ export class DetallePage implements OnInit {
       })
   }
 
-  async eliminarArchivo(fileURL: string) {
-    const toast = await this.toastController.create({
-      message: 'File deleted successfully',
-      duration: 3000
-    });
-    this.firestoreService.eliminarArchivoPorUrl(fileURL)
-      .then(() => {
-        toast.present();
-      }, (err) => {
-        console.log(err)
-      });
-  }
+
 }

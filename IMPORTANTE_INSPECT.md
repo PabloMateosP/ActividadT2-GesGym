@@ -1,0 +1,2 @@
+## INSPECT ##
+Para hacer debugg en chrome hay que meter en chrome://inspect/devices* dar al botón de port forwarding y posterior arrancar el emulador, pulsar encima de su nombre y posterior en inspect.
