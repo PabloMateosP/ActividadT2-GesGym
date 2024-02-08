@@ -95,7 +95,9 @@ export class AddPage implements OnInit {
           .then(downloadURL => {
             // EN LA VARIABLE downloadURL SE OBTIENE LA DIRECCIÓN URL DE LA IMAGEN
             console.log("downloadURL: " + downloadURL);
-            // this.document.data.imagenURL = downloadURL;
+
+            this.ejercicioEditando.imagenURL = downloadURL;
+            console.log("IMAGEN - URL: " + this.ejercicioEditando.imagenURL);
             // Mostrar el mensaje de finalización de la subida 
             toast.present();
             // Ocultar el mensaje de espera
@@ -105,6 +107,7 @@ export class AddPage implements OnInit {
   }
 
   clickBotonInsertar() {
+    console.log("Imagen URL:" + this.ejercicioEditando.imagenURL);
     this.firestoreService.insertar('ejercicio', this.ejercicioEditando).then(() => {
       this.alertInsertarTarea();
       this.router.navigate(['home']);
