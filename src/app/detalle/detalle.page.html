@@ -37,7 +37,7 @@
           <p><strong>Repeteciones: </strong>{{document.ejercicio.repeticiones}}</p>
         </ion-row>
         <ion-row>
-          <ion-img [src]="document.ejercicio.imagenUrl"></ion-img>
+          <ion-img [src]="document.ejercicio.imagenURL"></ion-img>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -67,8 +67,8 @@
           </ion-button>
         </ion-row>
         <ion-row>
-          <ion-button color="success" (click)="clickBotonModificar(); subirImagen()" fill="outline">
-            <ion-icon name="create-outline"></ion-icon>
+          <ion-button color="success" (click)="subirImagenYModificarTarea()" fill="outline">
+            GUARDAR CAMBIOS
           </ion-button>
         </ion-row>
       </ion-grid>

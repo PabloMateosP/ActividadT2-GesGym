@@ -68,45 +68,56 @@ export class AddPage implements OnInit {
       });
   }
 
-  async subirImagen() {
+  async subirImagenYInsertarTarea() {
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
       message: 'Please wait ...'
     });
 
-    // Mensaje de finalización de subida de la imagen 
+    // Mensaje de finalización de subida de la imagen
     const toast = await this.toastController.create({
       message: 'Image was updated successfully',
       duration: 3000
     });
 
-    // Carpeta del Storage donde se almacenará la imagen 
+    // Carpeta del Storage donde se almacenará la imagen
     let nombreCarpeta = "imagenes";
 
     // Mostrar el mensaje de espera
     loading.present();
-    // Asignar el nombre de la imagen en función de la hora actual para 
-    // evitar duplicidades de nombres 
-    let nombreImage = `${new Date().getTime()}`;
-    // Llamar al método que sube  la imagen al Storage 
-    this.firestoreService.subirImagenBase64(nombreCarpeta, nombreImage, this.imagenSelect)
-      .then(snapshot => {
-        snapshot.ref.getDownloadURL()
-          .then(downloadURL => {
-            // EN LA VARIABLE downloadURL SE OBTIENE LA DIRECCIÓN URL DE LA IMAGEN
-            console.log("downloadURL: " + downloadURL);
 
-            this.ejercicioEditando.imagenURL = downloadURL;
-            console.log("IMAGEN - URL: " + this.ejercicioEditando.imagenURL);
-            // Mostrar el mensaje de finalización de la subida 
-            toast.present();
-            // Ocultar el mensaje de espera
-            loading.dismiss();
-          })
-      })
+    try {
+      // Asignar el nombre de la imagen en función de la hora actual para evitar duplicidades de nombres
+      let nombreImage = `${new Date().getTime()}`;
+
+      // Llamar al método que sube la imagen al Storage
+      const snapshot = await this.firestoreService.subirImagenBase64(nombreCarpeta, nombreImage, this.imagenSelect);
+
+      // Obtener la URL de descarga de la imagen
+      const downloadURL = await snapshot.ref.getDownloadURL();
+      console.log("downloadURL: " + downloadURL);
+
+      // Actualizar la URL de la imagen en el documento
+      this.ejercicioEditando.imagenURL = downloadURL;
+
+      // Mostrar el mensaje de finalización de la subida
+      toast.present();
+
+      // Ocultar el mensaje de espera
+      loading.dismiss();
+
+      // Ahora que la imagen está subida, puedes llamar a la función para insertar la tarea completa
+      this.clickBotonInsertar();
+    } catch (error) {
+      console.error("Error uploading image: ", error);
+      // Manejar el error según tus necesidades
+      loading.dismiss();
+      // Mostrar un mensaje de error si es necesario
+    }
   }
 
   clickBotonInsertar() {
+    console.log("Insertando datos a Firebase ...");
     console.log("Imagen URL:" + this.ejercicioEditando.imagenURL);
     this.firestoreService.insertar('ejercicio', this.ejercicioEditando).then(() => {
       this.alertInsertarTarea();

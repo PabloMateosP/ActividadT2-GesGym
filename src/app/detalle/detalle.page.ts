@@ -16,6 +16,7 @@ import { AlertController } from '@ionic/angular';
 export class DetallePage implements OnInit {
   id: string = '';
 
+
   // Variable para la aparición del formulario editar
   edit = false;
 
@@ -79,42 +80,43 @@ export class DetallePage implements OnInit {
       message: '¿Estás seguro de que quieres borrar la tarea?',
       buttons: [
         {
-          text: 'Aceptar',
-          handler: () => {
-            this.clickBotonBorrar();
-            this.alertExito();
-          }
-        },
-        {
           text: 'Denegar',
           role: 'cancel',
           handler: () => {
             this.alertError();
           }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.clickBotonBorrar();
+            this.alertExito();
+          }
         }
+
       ]
     });
-  
+
     await alert.present();
   }
-  
+
   async alertExito() {
     const alert = await this.alertController.create({
       header: 'Éxito',
       message: 'Tarea Borrada',
       buttons: ["Aceptar"]
     });
-  
+
     await alert.present();
   }
-  
+
   async alertError() {
     const alert = await this.alertController.create({
       header: 'Error',
       message: 'La tarea no ha sido eliminada',
       buttons: ["Aceptar"]
     });
-  
+
     await alert.present();
   }
   // -----------------------------------------------------
@@ -179,41 +181,60 @@ export class DetallePage implements OnInit {
   }
 
 
-  // Apartado Subir Imagen
-  async subirImagen() {
+  async subirImagenYModificarTarea() {
+
+    // Verificar si se ha seleccionado una imagen
+    // if (this.imagenSelect === "") {
+    //   // Si no se ha seleccionado una imagen, llamar directamente a la función para modificar la tarea
+    //   this.clickBotonModificar();
+      
+    // }
+
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
       message: 'Please wait ...'
     });
 
-    // Mensaje de finalización de subida de la imagen 
+    // Mensaje de finalización de subida de la imagen
     const toast = await this.toastController.create({
       message: 'Image was updated successfully',
       duration: 3000
     });
 
-    // Carpeta del Storage donde se almacenará la imagen 
+    // Carpeta del Storage donde se almacenará la imagen
     let nombreCarpeta = "imagenes";
 
     // Mostrar el mensaje de espera
     loading.present();
-    // Asignar el nombre de la imagen en función de la hora actual para 
-    // evitar duplicidades de nombres 
-    let nombreImage = `${new Date().getTime()}`;
-    // Llamar al método que sube  la imagen al Storage 
-    this.firestoreService.subirImagenBase64(nombreCarpeta, nombreImage, this.imagenSelect)
-      .then(snapshot => {
-        snapshot.ref.getDownloadURL()
-          .then(downloadURL => {
-            // EN LA VARIABLE downloadURL SE OBTIENE LA DIRECCIÓN URL DE LA IMAGEN
-            console.log("downloadURL: " + downloadURL);
-            // this.document.data.imagenURL = downloadURL;
-            // Mostrar el mensaje de finalización de la subida 
-            toast.present();
-            // Ocultar el mensaje de espera
-            loading.dismiss();
-          })
-      })
+
+    try {
+      // Asignar el nombre de la imagen en función de la hora actual para evitar duplicidades de nombres
+      let nombreImage = `${new Date().getTime()}`;
+
+      // Llamar al método que sube la imagen al Storage
+      const snapshot = await this.firestoreService.subirImagenBase64(nombreCarpeta, nombreImage, this.imagenSelect);
+
+      // Obtener la URL de descarga de la imagen
+      const downloadURL = await snapshot.ref.getDownloadURL();
+      console.log("downloadURL: " + downloadURL);
+
+      // Actualizar la URL de la imagen en el documento
+      this.document.ejercicio.imagenURL = downloadURL;
+
+      // Mostrar el mensaje de finalización de la subida
+      toast.present();
+
+      // Ocultar el mensaje de espera
+      loading.dismiss();
+
+      // Ahora que la imagen está subida, puedes llamar a la función para modificar la tarea
+      this.clickBotonModificar();
+    } catch (error) {
+      console.error("Error uploading image: ", error);
+      // Manejar el error según tus necesidades
+      loading.dismiss();
+      // Mostrar un mensaje de error si es necesario
+    }
   }
 
 
