@@ -182,14 +182,7 @@ export class DetallePage implements OnInit {
 
 
   async subirImagenYModificarTarea() {
-
-    // Verificar si se ha seleccionado una imagen
-    // if (this.imagenSelect === "") {
-    //   // Si no se ha seleccionado una imagen, llamar directamente a la función para modificar la tarea
-    //   this.clickBotonModificar();
-      
-    // }
-
+    
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
       message: 'Please wait ...'

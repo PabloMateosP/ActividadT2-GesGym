@@ -69,6 +69,13 @@ export class AddPage implements OnInit {
   }
 
   async subirImagenYInsertarTarea() {
+
+    if (this.imagenSelect === "") {
+      // Anteriormente hemos subido una imagen default para que cuando se suba una tarea sin imagen salga una imagen por defecto 
+      this.ejercicioEditando.imagenURL = "https://firebasestorage.googleapis.com/v0/b/gesgym-4c524.appspot.com/o/imagenes%2F1707992718599?alt=media&token=bfe78c69-4362-433f-b549-30a32ca6f668";
+      this.clickBotonInsertar();
+    }
+
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
       message: 'Please wait ...'
