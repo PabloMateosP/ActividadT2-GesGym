@@ -7,6 +7,7 @@ import { FirestoreService } from '../firestore.service';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { AlertController } from '@ionic/angular';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 @Component({
   selector: 'app-detalle',
@@ -35,7 +36,8 @@ export class DetallePage implements OnInit {
     private loadingController: LoadingController,
     private toastController: ToastController,
     private imagePicker: ImagePicker,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private socialSharing: SocialSharing
   ) {
 
   }
@@ -180,9 +182,8 @@ export class DetallePage implements OnInit {
       });
   }
 
-
   async subirImagenYModificarTarea() {
-    
+
     // Mensaje de espera mientras se sube la imagen
     const loading = await this.loadingController.create({
       message: 'Please wait ...'
@@ -230,5 +231,17 @@ export class DetallePage implements OnInit {
     }
   }
 
+  // -------------------------------------------------------------------- //
+  clickCompartir() {
 
+    // Share via email
+    this.socialSharing.share('document.ejercicio.titulo', 'document.ejercicio.descripcion', 'document.ejercicio.repeticiones', 'document.ejercicio.serie').then(() => {
+      // Éxito
+      console.log('¡Correo electrónico compartido con éxito!');
+    }).catch((error) => {
+      // Error al compartir por correo electrónico
+      console.error('Error al compartir por correo electrónico:', error);
+    });
+    
+  }
 }
