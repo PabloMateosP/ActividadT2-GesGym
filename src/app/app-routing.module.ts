@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'add',
     loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'info-autor',
+    loadChildren: () => import('./info-autor/info-autor.module').then( m => m.InfoAutorPageModule)
   }
 ];
 
