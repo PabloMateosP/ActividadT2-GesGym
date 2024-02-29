@@ -1,51 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title id="idTituloPag" size="large">
+      GESGYM
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-header [translucent]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title id="idTituloPag" size="large">
-        GESGYM
-      </ion-title>
+      <ion-title size="large">GESGYM</ion-title>
     </ion-toolbar>
   </ion-header>
+  <h1 id="h1TituloEjercicios">
+    LISTA DE EJERCICIOS
+  </h1>
 
-  <ion-content [fullscreen]="true" class="ion-padding">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">GESGYM</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <h1 id="h1TituloEjercicios">
-      LISTA DE EJERCICIOS
-    </h1>
+  <ion-list id="idListaEjercicios">
+    <ion-item *ngFor="let documentEjercicio of arrayColeccionEjercicios"
+      (click)="selectEjercicio(documentEjercicio.id, documentEjercicio.ejercicio)">
+      <ion-grid class="vertical-layout">
+        <ion-row>
+          <h2>{{documentEjercicio.ejercicio.titulo}}</h2>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" style="margin-bottom: 75px;">
+    <ion-fab-button (click)="clickEntrarAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
 
-    <ion-list id="idListaEjercicios">
-      <ion-item *ngFor="let documentEjercicio of arrayColeccionEjercicios"
-        (click)="selectEjercicio(documentEjercicio.id, documentEjercicio.ejercicio)">
-        <ion-grid class="vertical-layout">
-          <ion-row>
-            <h2>{{documentEjercicio.ejercicio.titulo}}</h2>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-    </ion-list>
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end" style="margin-bottom: 75px;">
-      <ion-fab-button (click)="clickEntrarAdd()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </ion-content>
+<ion-toolbar id="idBottomToolbar">
+  <ion-tabs id="idBottomTabs">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="triangle"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
 
-  <ion-toolbar id="idBottomToolbar" color="dark">
-    <ion-tabs id="idBottomTabs">
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="home">
-          <ion-icon name="triangle"></ion-icon>
-          <ion-label>Inicio</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="info-autor">
-          <ion-icon name="ellipse"></ion-icon>
-          <ion-label>About Us</ion-label>
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-toolbar>
+      <ion-tab-button tab="info-autor">
+        <ion-icon name="ellipse"></ion-icon>
+        <ion-label>About Us</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>
