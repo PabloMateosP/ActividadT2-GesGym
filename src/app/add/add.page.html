@@ -16,7 +16,7 @@
         <ion-row id="idRowDatos">
           <ion-label id="idLabel">Título: </ion-label>
           <ion-input [(ngModel)]="ejercicioEditando.titulo"></ion-input>
-
+          
           <ion-label id="idLabel">Descripción: </ion-label>
           <ion-input [(ngModel)]="ejercicioEditando.descripcion"></ion-input>
 
@@ -29,11 +29,17 @@
           <ion-label id="idLabel">Repeticiones: </ion-label>
           <ion-input [(ngModel)]="ejercicioEditando.repeticiones"></ion-input>
         </ion-row>
+        <br>
+        <ion-row *ngIf="imagenSelect">
+          <ion-img [src]="imagenSelect" alt="Imagen seleccionada"></ion-img>
+        </ion-row>
         <ion-row>
           <ion-button (click)="seleccionarImagen()" fill="outline" color="success" aria-required="true">
             <ion-icon name="images"></ion-icon>
           </ion-button>     
         </ion-row>
+        
+        
         <br>
         <ion-row id="idRowBotones">
           <ion-button (click)="subirImagenYInsertarTarea()" fill="outline">

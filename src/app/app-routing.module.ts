@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'info-autor',
     loadChildren: () => import('./info-autor/info-autor.module').then( m => m.InfoAutorPageModule)
+  },
+  {
+    path: 'maps',
+    loadChildren: () => import('./maps/maps.module').then( m => m.MapsPageModule)
   }
 ];
 

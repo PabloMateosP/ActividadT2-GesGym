@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { InfoAutorPage } from './info-autor.page';
+import { MapsPage } from './maps.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: InfoAutorPage
+    component: MapsPage
   },
   {
     path: 'home',
     redirectTo: '/home'
   },
   {
-    path: 'maps',
-    redirectTo: '/maps'
+    path: 'info-autor',
+    redirectTo: '/info-autor'
   }
 ];
 
@@ -22,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class InfoAutorPageRoutingModule {}
+export class MapsPageRoutingModule {}

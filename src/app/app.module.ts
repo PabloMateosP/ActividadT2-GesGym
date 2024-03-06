@@ -12,10 +12,12 @@ import { environment } from 'src/environments/environment';
 import { ImagePicker } from '@awesome-cordova-plugins/image-picker/ngx';
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
+import { CallNumber } from '@ionic-native/call-number/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebaseConfig), AngularFireModule],
-  providers: [ImagePicker, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SocialSharing],
+  providers: [ImagePicker, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SocialSharing, CallNumber],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

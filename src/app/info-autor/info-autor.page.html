@@ -10,18 +10,75 @@
       <ion-title size="large">About Me</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-list>
+    <ion-grid>
+      <ion-grid>
+        <ion-row>
+          <H1>Pablo Mateos Palas 😎</H1>
+        </ion-row>
+        <ion-row>
+          <p>&ensp;Hola, me llamo Pablo y soy un apasionado de la programación y el fitness. Desde pequeño me gustaba
+            crear mis
+            propias aplicaciones y juegos, y también practicar deporte y cuidar mi salud. Por eso, decidí combinar mis
+            dos pasiones y crear una app de ejercicios de gym que te ayuda a ponerte en forma, mejorar tu rendimiento y
+            motivarte a seguir tus objetivos. <br><br>
+
+
+            &ensp;Mi app se llama GesGym y es una app móvil que te ofrece guardar tus ejercicios personalizados,
+            seguimiento
+            de tu progreso, consejos de nutrición y salud, y una comunidad de usuarios que comparten sus experiencias y
+            se apoyan mutuamente. GesGym es una app fácil de usar, divertida y efectiva, que se adapta a tu nivel,
+            preferencias y disponibilidad.<br><br>
+
+
+            &ensp;Si quieres saber más sobre mí, mi app o mi filosofía de vida, puedes visitar mi página web, mi blog o
+            mis
+            redes sociales. También puedes contactarme por correo electrónico o por teléfono si tienes alguna duda,
+            sugerencia o comentario. Estaré encantado de atenderte y de conocer tu opinión. Gracias por tu interés y
+            espero que disfrutes de GesGym tanto como yo. 😊
+          </p>
+        </ion-row>
+        <ion-row>
+          <ion-img src="https://firebasestorage.googleapis.com/v0/b/gesgym-4c524.appspot.com/o/imagenes%2F1709716140094?alt=media&token=552ff21c-e6b7-4595-94fd-0332752d4f40"></ion-img>
+        </ion-row>
+        <ion-row>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>Contactar</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content>
+              <ion-button (click)="realizarLlamada('18001010101')">
+                <ion-icon name="call"></ion-icon>&nbsp;
+                Llamar
+              </ion-button>
+            </ion-card-content>
+          </ion-card>
+        </ion-row>
+      </ion-grid>
+    </ion-grid>
+  </ion-list>
 </ion-content>
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>Inicio</ion-label>
-    </ion-tab-button>
 
-    <ion-tab-button tab="info-autor">
-      <ion-icon name="ellipse"></ion-icon>
-      <ion-label>About Us</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+
+<ion-toolbar>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="triangle"></ion-icon>
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="maps">
+        <ion-icon name="cube"></ion-icon>
+        <ion-label>Map</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="info-autor">
+        <ion-icon name="ellipse"></ion-icon>
+        <ion-label>About Us</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>
