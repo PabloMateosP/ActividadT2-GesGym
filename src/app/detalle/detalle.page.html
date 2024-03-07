@@ -39,6 +39,12 @@
         <ion-row>
           <ion-img [src]="document.ejercicio.imagenURL"></ion-img>
         </ion-row>
+        <br><br>
+        <ion-row>
+          <ion-button color="danger" fill="outline" expand="full">
+            Borrar Imagen (<ion-icon name="trash"></ion-icon>)
+          </ion-button>
+        </ion-row>
       </ion-grid>
     </ion-item>
   </ion-list>
@@ -62,12 +68,12 @@
           <ion-input [(ngModel)]="document.ejercicio.repeticiones"></ion-input>
         </ion-row>
         <ion-row>
-          <ion-button color="success" (click)="seleccionarImagen()" fill="outline">
+          <ion-button color="success" (click)="seleccionarImagen()" fill="outline" expand="full">
             Subir Imagen (<ion-icon name="cloud-upload-outline"></ion-icon>)
           </ion-button>
         </ion-row>
         <ion-row>
-          <ion-button color="success" (click)="subirImagenYModificarTarea()" fill="outline">
+          <ion-button color="primary" (click)="subirImagenYModificarTarea()" fill="outline" expand="full">
             GUARDAR CAMBIOS
           </ion-button>
         </ion-row>

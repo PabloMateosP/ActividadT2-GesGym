@@ -133,18 +133,18 @@ export class DetallePage implements OnInit {
     this.router.navigate(['home']);
   }
 
-  async eliminarArchivo(fileURL: string) {
-    const toast = await this.toastController.create({
-      message: 'File deleted successfully',
-      duration: 3000
-    });
-    this.firestoreService.eliminarArchivoPorUrl(fileURL)
-      .then(() => {
-        toast.present();
-      }, (err) => {
-        console.log(err)
-      });
-  }
+  // async eliminarArchivo(fileURL: string) {
+  //   const toast = await this.toastController.create({
+  //     message: 'File deleted successfully',
+  //     duration: 3000
+  //   });
+  //   this.firestoreService.eliminarArchivoPorUrl(fileURL)
+  //     .then(() => {
+  //       toast.present();
+  //     }, (err) => {
+  //       console.log(err)
+  //     });
+  // }
 
   // -----------------------------------------------------------------------------------
   // Apartado Seleccionar Imagen 
@@ -235,7 +235,7 @@ export class DetallePage implements OnInit {
   clickCompartir() {
 
     // Share via email
-    this.socialSharing.share('document.ejercicio.titulo', 'document.ejercicio.descripcion', 'document.ejercicio.repeticiones', 'document.ejercicio.serie').then(() => {
+    this.socialSharing.share(this.document.ejercicio.titulo).then(() => {
       // Éxito
       console.log('¡Correo electrónico compartido con éxito!');
     }).catch((error) => {
