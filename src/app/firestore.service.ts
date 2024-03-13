@@ -39,4 +39,10 @@ export class FirestoreService {
   public eliminarArchivoPorUrl(url:string){
     return this.angularFireStorage.storage.refFromURL(url).delete();
   }
+
+  public actualizarURLEjercicio(coleccion: string, documentId: string, nuevaURL: string, datos:any) {
+    return this.angularFirestore.collection(coleccion).doc(documentId).update({
+        imagenURL: nuevaURL
+    });
+}
 }

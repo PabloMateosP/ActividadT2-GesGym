@@ -144,7 +144,31 @@ export class DetallePage implements OnInit {
   //     }, (err) => {
   //       console.log(err)
   //     });
+
+  //   this.document.ejercicio = "https://firebasestorage.googleapis.com/v0/b/gesgym-4c524.appspot.com/o/imagenes%2F1707992718599?alt=media&token=bfe78c69-4362-433f-b549-30a32ca6f668";
   // }
+
+
+  async eliminarArchivo(fileURL: string) {
+    const toast = await this.toastController.create({
+        message: 'File deleted successfully',
+        duration: 3000
+    });
+
+    // Eliminar el archivo existente
+    try {
+        await this.firestoreService.eliminarArchivoPorUrl(fileURL);
+
+        // Actualizar la URL del objeto ejercicio con la nueva URL
+        const nuevaURL = "https://firebasestorage.googleapis.com/v0/b/gesgym-4c524.appspot.com/o/imagenes%2F1707992718599?alt=media&token=bfe78c69-4362-433f-b549-30a32ca6f668";
+        await this.firestoreService.actualizarURLEjercicio('ejercicio', this.id, nuevaURL, this.document.ejercicio);
+        console.log(this.document.ejercicio.urlImagen);
+
+        toast.present();
+    } catch (err) {
+        console.log("Error al eliminar el archivo existente o actualizar la URL del ejercicio:", err);
+    }
+}
 
   // -----------------------------------------------------------------------------------
   // Apartado Seleccionar Imagen 
@@ -242,6 +266,6 @@ export class DetallePage implements OnInit {
       // Error al compartir por correo electrónico
       console.error('Error al compartir por correo electrónico:', error);
     });
-    
+
   }
 }
